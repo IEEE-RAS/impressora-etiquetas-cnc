@@ -1,58 +1,93 @@
-# Impressora de Etiquetas CNC
+# 🤖 Diário de Desenvolvimento
 
-Plotter de tambor que escreve texto em uma fita adesiva. O rolo de fita é o tambor e gira com um motor de passo. A caneta anda num trilho linear com outro motor de passo, e um servo levanta e abaixa a caneta.
+**Equipe: IEEE RAS - UEFS**
 
-Projeto do IEEE RAS, UEFS.
+## 📝 Visão Geral
 
-## Como funciona
+Este repositório serve como o diário de desenvolvimento oficial do projeto **Impressora de Etiquetas CNC**. Nosso objetivo é construir um robô que imprima etiquetas na fita crepe. Aqui, documentamos nosso progresso, desafios e aprendizados em todas as frentes: software, hardware, eletrônica e design mecânico.
 
-- **Eixo do tambor (X):** NEMA17 17HS2408 + A4988. Gira a fita (comprimento da etiqueta).
-- **Eixo da caneta (Y):** NEMA17 + A4988 + correia GT2 + polia + trilho. Move a caneta (altura da letra).
-- **Servo SG90:** sobe e desce a caneta.
-- **Controle:** Arduino Uno R3 + CNC Shield v3.
+## 👥 Equipe
 
-Para escrever uma letra, o código divide cada letra em retas. Para cada reta ele abaixa a caneta, anda os motores o número de passos certo (os dois ao mesmo tempo nas diagonais) e levanta a caneta.
-
-## Pinos (CNC Shield v3)
-
-| Função | STEP | DIR |
+| Nome | Cargo no projeto | GitHub |
 |---|---|---|
-| Tambor (eixo X) | 2 | 5 |
-| Caneta (eixo Y) | 3 | 6 |
+| Julian | Líder de Projeto | [@jubrand701-ops](https://github.com/jubrand701-ops) |
+| Bruno | Secretário de Mesa | [@brunoqwe54-bit](https://github.com/brunoqwe54-bit) |
 
-- ENABLE dos drivers: pino 8 (LOW = ligado)
-- Servo: pino 11
+## 🎯 Metas do Projeto
 
-## Pastas
+### Metas atuais
+
+- **Hardware:** Definição dos componentes e do planejamento da montagem física da impressora ainda pendentes.
+- **Software:** Utilizar o Wokwi para simular o circuito da impressora e compreender o funcionamento dos componentes.
+- **Modelagem 3D:** Definição do modelo e desenvolvimento dos desenhos das peças necessárias à montagem ainda pendentes.
+
+### Objetivos Gerais
+
+**Hardware:**
+- [ ] Montar e integrar os motores de passo, os drivers A4988 e o Arduino com o Shield CNC.
+- [ ] Construir a estrutura mecânica da impressora, incluindo o tambor, o trilho, a correia e o suporte da caneta.
+
+**Software:**
+- [ ] Desenvolver o código de controle dos motores e do servo responsável pelo movimento da caneta.
+- [ ] Utilizar o GRBL e o G-code para controlar e calibrar os movimentos da impressora.
+- [ ] Desenvolver uma forma de transformar textos em comandos para a impressão de etiquetas.
+- [ ] Implementar futuramente a comunicação Bluetooth para controlar a impressora pelo celular.
+
+## 🛠️ Tecnologias e Ferramentas
+
+| Categoria | Ferramentas |
+|---|---|
+| Linguagens | C++ (Arduino) |
+| Hardware | Arduino Uno R3, CNC Shield v3, drivers A4988, motores de passo NEMA17 (17HS2408), servo SG90, módulo Bluetooth HC-05 (futuro) |
+| Mecânica | Correia GT2, polia, trilho linear, rolo de fita crepe como tambor |
+| Simulação | Wokwi |
+| Programação | VS Code com PlatformIO |
+| Controle (futuro) | GRBL, G-code |
+| Modelagem 3D | A definir |
+
+## 📁 Estrutura do Repositório
 
 | Pasta | O que tem |
 |---|---|
-| `simulacao-wokwi/` | Simulação completa no Wokwi: `sketch.ino`, `diagram.json`, `libraries.txt`. Uma tela OLED faz o papel da fita. |
-| `maquina-real/` | `sketch_real.ino`: a mesma lógica para a máquina de verdade (sem tela, medidas em mm). |
-| `docs/` | Apostila em PDF explicando o projeto, os componentes, a montagem e o código. A Parte 4 (páginas 27 a 43) explica a simulação. |
+| `simulacao-wokwi/` | Simulação no Wokwi: `sketch.ino`, `diagram.json` e `libraries.txt`. Uma tela OLED faz o papel da fita. |
+| `maquina-real/` | `sketch_real.ino`: a mesma lógica da simulação, para a máquina de verdade (sem tela, medidas em mm). Ainda não testado na máquina. |
+| `docs/` | Apostila em PDF sobre o projeto. A Parte 4 (páginas 27 a 43) explica a simulação. |
 
-## Como rodar a simulação
+**Como rodar a simulação:** crie um projeto de Arduino Uno no [Wokwi](https://wokwi.com), cole o conteúdo dos três arquivos de `simulacao-wokwi/` nas abas de mesmo nome e clique em play. Ele escreve "UEFS" e depois aceita uma palavra no Monitor Serial.
 
-1. Abra [wokwi.com](https://wokwi.com) e crie um projeto novo de Arduino Uno.
-2. Cole o conteúdo de `sketch.ino`, `diagram.json` e `libraries.txt` nas abas de mesmo nome.
-3. Clique em play. Ele escreve "UEFS" na tela.
-4. Digite uma palavra no Monitor Serial e aperte Enter. Letras aceitas: A B C D E F G H I L M N O P R S T U V e espaço.
+## 📓 Diário de Desenvolvimento
 
-## Máquina real
+Aqui registramos nosso progresso semanalmente. Cada entrada inclui atualizações de hardware e software, os desafios que encontramos e as decisões que tomamos.
 
-O `sketch_real.ino` **ainda não foi testado na máquina**. Antes de usar, confira as constantes marcadas com `[MEDIR]`:
+### Semana 1: (12/10/2026) - (19/10/2026)
 
-- `PASSOS_MM_CANETA` e `PASSOS_MM_TAMBOR` (dependem da mecânica e do diâmetro do rolo)
-- Os ângulos do servo (`CANETA_CIMA` e `CANETA_BAIXO`)
-- Os jumpers de micropasso (1/16) no Shield
-- O sentido de giro de cada eixo
+**Foco da Semana:** Simulação do Circuito Geral no Wokwi
 
-Comece com a caneta sem tinta.
+**Software:**
+- **Arquitetura:** Desenvolvemos a simulação do circuito geral no Wokwi para visualizar o funcionamento dos componentes e ter uma base para o desenvolvimento do projeto.
+- **Código:** Iniciamos a estruturação da base do código que será utilizada no controle da impressora.
 
-## Próximos passos
+**Hardware & Modelagem 3D:**
+- **Etapa atual:** Estamos trabalhando na representação visual e no planejamento do projeto, deixando a montagem física do hardware para uma etapa posterior.
 
-- Montar a mecânica e medir os passos por mm.
-- Testar o `sketch_real.ino`.
-- Adicionar as letras que faltam (J, K, Q, W, X, Y, Z e números).
-- Decidir entre código próprio e GRBL (com um gerador de texto para G-code).
-- Entrada de texto por Bluetooth (HC-05).
+**Desafios:**
+- O Wokwi não disponibiliza todos os componentes necessários para realizar a simulação completa do circuito (não existe o CNC Shield), o que impossibilitou testar integralmente o funcionamento do sistema nessa etapa.
+
+**Decisões:**
+- **Utilização do Wokwi:** Escolhemos a plataforma para simular o circuito e compreender melhor o funcionamento do sistema antes de iniciar a montagem física.
+
+## 🚀 Como Contribuir
+
+Somos um projeto de código e hardware abertos! Se você deseja contribuir:
+
+1. Faça um Fork deste repositório.
+2. Crie uma Branch para sua feature (`git checkout -b feature/SuaFeature`).
+3. Faça o Commit de suas mudanças (`git commit -m 'Adiciona SuaFeature'`).
+4. Faça o Push para a Branch (`git push origin feature/SuaFeature`).
+5. Abra um Pull Request.
+
+Para problemas ou sugestões, por favor, abra uma Issue.
+
+## 📄 Licença
+
+Este projeto está licenciado sob a Licença GNU GPL v2.0. Veja o arquivo `LICENSE` para mais detalhes.
