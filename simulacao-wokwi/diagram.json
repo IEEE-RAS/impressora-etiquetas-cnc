@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "author": "Impressora de Etiquetas CNC",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 380,
+      "left": 40,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-a4988",
+      "id": "drvTambor",
+      "top": 230,
+      "left": 60,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-a4988",
+      "id": "drvCaneta",
+      "top": 230,
+      "left": 290,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "motorTambor",
+      "top": 0,
+      "left": 0,
+      "attrs": {
+        "size": "17",
+        "display": "steps",
+        "arrow": "orange"
+      }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "motorCaneta",
+      "top": 0,
+      "left": 230,
+      "attrs": {
+        "size": "17",
+        "display": "steps",
+        "arrow": "orange"
+      }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "servoCaneta",
+      "top": 20,
+      "left": 500,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ssd1306",
+      "id": "fita",
+      "top": 220,
+      "left": 520,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [
+      "uno:2",
+      "drvTambor:STEP",
+      "orange",
+      []
+    ],
+    [
+      "uno:5",
+      "drvTambor:DIR",
+      "purple",
+      []
+    ],
+    [
+      "uno:8",
+      "drvTambor:ENABLE",
+      "gray",
+      []
+    ],
+    [
+      "uno:5V",
+      "drvTambor:VDD",
+      "red",
+      []
+    ],
+    [
+      "uno:GND.1",
+      "drvTambor:GND",
+      "black",
+      []
+    ],
+    [
+      "drvTambor:RESET",
+      "drvTambor:SLEEP",
+      "green",
+      []
+    ],
+    [
+      "drvTambor:1B",
+      "motorTambor:A-",
+      "green",
+      []
+    ],
+    [
+      "drvTambor:1A",
+      "motorTambor:A+",
+      "green",
+      []
+    ],
+    [
+      "drvTambor:2A",
+      "motorTambor:B+",
+      "blue",
+      []
+    ],
+    [
+      "drvTambor:2B",
+      "motorTambor:B-",
+      "blue",
+      []
+    ],
+    [
+      "uno:3",
+      "drvCaneta:STEP",
+      "orange",
+      []
+    ],
+    [
+      "uno:6",
+      "drvCaneta:DIR",
+      "purple",
+      []
+    ],
+    [
+      "uno:8",
+      "drvCaneta:ENABLE",
+      "gray",
+      []
+    ],
+    [
+      "uno:5V",
+      "drvCaneta:VDD",
+      "red",
+      []
+    ],
+    [
+      "uno:GND.1",
+      "drvCaneta:GND",
+      "black",
+      []
+    ],
+    [
+      "drvCaneta:RESET",
+      "drvCaneta:SLEEP",
+      "green",
+      []
+    ],
+    [
+      "drvCaneta:1B",
+      "motorCaneta:A-",
+      "green",
+      []
+    ],
+    [
+      "drvCaneta:1A",
+      "motorCaneta:A+",
+      "green",
+      []
+    ],
+    [
+      "drvCaneta:2A",
+      "motorCaneta:B+",
+      "blue",
+      []
+    ],
+    [
+      "drvCaneta:2B",
+      "motorCaneta:B-",
+      "blue",
+      []
+    ],
+    [
+      "uno:11",
+      "servoCaneta:PWM",
+      "orange",
+      []
+    ],
+    [
+      "uno:5V",
+      "servoCaneta:V+",
+      "red",
+      []
+    ],
+    [
+      "uno:GND.2",
+      "servoCaneta:GND",
+      "black",
+      []
+    ],
+    [
+      "uno:A4",
+      "fita:DATA",
+      "blue",
+      []
+    ],
+    [
+      "uno:A5",
+      "fita:CLK",
+      "yellow",
+      []
+    ],
+    [
+      "uno:5V",
+      "fita:VIN",
+      "red",
+      []
+    ],
+    [
+      "uno:GND.3",
+      "fita:GND",
+      "black",
+      []
+    ]
+  ],
+  "dependencies": {}
+}
